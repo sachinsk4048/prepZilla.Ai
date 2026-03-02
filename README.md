@@ -1,7 +1,8 @@
 <div align="center">
 
 # prepZilla.Ai
-An interview prepration web application 
+AI Powered Interview Preparation Platform  
+--
 
 
 _Built with the tools and technologies:_
