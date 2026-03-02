@@ -1,17 +1,11 @@
+<div align="center">
+
 # prepZilla.Ai
 An interview prepration web application 
 
-
-
-
-
-<div align="center">
-
-# InterviewPrepAi
-
-![last commit](https://img.shields.io/github/last-commit/Pyjavascript/InterviewPrepAi)
+<!-- ![last commit](https://img.shields.io/github/last-commit/Pyjavascript/InterviewPrepAi)
 ![Top Language](https://img.shields.io/github/languages/top/Pyjavascript/InterviewPrepAi)
-![Languages Count](https://img.shields.io/github/languages/count/Pyjavascript/InterviewPrepAi)
+![Languages Count](https://img.shields.io/github/languages/count/Pyjavascript/InterviewPrepAi) -->
 
 ---
 
@@ -36,7 +30,7 @@ _Built with the tools and technologies:_
 
 </div>
 
-## 📚 Table of Contents
+<!-- ## 📚 Table of Contents
 
 - [About the Project](#about-the-project)
 - [Tech Stack](#tech-stack)
@@ -46,13 +40,19 @@ _Built with the tools and technologies:_
   - [Installation](#installation)
   - [Environment Variables](#env)
 - [Project Structure](#project-structure)
-- [Getting the JWT Token](#jwt)
+- [Getting the JWT Token](#jwt) -->
 
 ## 📌 About the Project
 
-**InterviewPrepAi** is a full-stack AI-powered app that helps users prepare for job interviews by generating dynamic questions, analyzing responses, and improving their readiness through feedback and smart iterations.
+<!-- **InterviewPrepAi** is a full-stack AI-powered app that helps users prepare for job interviews by generating dynamic questions, analyzing responses, and improving their readiness through feedback and smart iterations.
 
 You can log in, select categories, answer questions, and get insights powered by OpenAI.
+
+--- -->
+
+**PrepZilla.AI** is an AI-driven web application designed to help students and job seekers prepare for technical interviews in a structured and personalized manner.  
+
+The platform enables users to create job-specific interview sessions and generate AI-powered interview questions using Google’s Gemini API. All session data is securely stored and accessible through a personalized dashboard.
 
 ---
 
@@ -114,7 +114,7 @@ Before starting, make sure you have:
 ```bash
 # Clone the repo
 git clone https://github.com/Pyjavascript/InterviewPrepAi.git
-cd InterviewPrepAi
+cd prepZilla.Ai
 
 # Install fronten
 cd frontend
