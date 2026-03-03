@@ -10,6 +10,6 @@ The system follows a 3-tier architecture:
 
 <p align="center">
   <a href="assets/systemArc.png">
-    <img src="assets/systemArc.png" width="800">
+    <img src="assets/systemArc.png" width="1000">
   </a>
 </p>
