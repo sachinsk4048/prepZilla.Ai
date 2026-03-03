@@ -9,7 +9,7 @@ The system follows a 3-tier architecture:
 ## System Architecture
 
 <p align="center">
-  <a href="assets/systemArc.png">
-    <img src="assets/systemArc.png" width="2000" height="900">
+  <a href="assets/sysArc.png">
+    <img src="assets/sysArc.png" width="2000" height="900">
   </a>
 </p>
