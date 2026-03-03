@@ -33,7 +33,7 @@ Includes:
 - MongoDB interactions
 
 <p align="center">
-  <img src="docs/sequence-session.png" width="900">
+  <img src="assets/s-session.png" width="900">
 </p>
 
 ---
@@ -50,7 +50,7 @@ Includes:
 - Database update operations
 
 <p align="center">
-  <img src="docs/sequence-question.png" width="900">
+  <img src="assets/s-question.png" width="900">
 </p>
 
 ---
@@ -68,7 +68,7 @@ Includes:
 - JSON parsing and response handling
 
 <p align="center">
-  <img src="docs/sequence-ai.png" width="900">
+  <img src="assets/s-Ai.png" width="900">
 </p>
 
 ---
