@@ -1,4 +1,4 @@
-
+// InterviewPrepAi\backend\controllers\aiController.js
 const { GoogleGenAI } = require("@google/genai");
 const {
   conceptExplainPrompt,
@@ -51,8 +51,8 @@ const generateInterviewQuestions = async (req, res) => {
 
     // Remove markdown safely
     const cleanedText = rawText
-      .replace(/```json/gi, "")
-      .replace(/```/g, "")
+      .replace(/^```json\s*/i, "")
+      .replace(/```$/, "")
       .trim();
 
     const data = JSON.parse(cleanedText);
@@ -104,9 +104,9 @@ const generateConceptExplanation = async (req, res) => {
       throw new Error("Empty response from Gemini");
     }
 
-    const cleanedText = rawText
-      .replace(/```json/gi, "")
-      .replace(/```/g, "")
+     const cleanedText = rawText
+      .replace(/^```json\s*/i, "")
+      .replace(/```$/, "")
       .trim();
 
     const data = JSON.parse(cleanedText);

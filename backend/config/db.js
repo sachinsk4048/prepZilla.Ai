@@ -11,9 +11,3 @@ const connectDB = async () => {
 }
 
 module.exports = connectDB;
-
-
-// mongodb+srv://PyjavaScript:<db_password>@interviewprepai.qf2tms7.mongodb.net/?retryWrites=true&w=majority&appName=InterviewPrepAI
-
-
-//  PyjavaScript 
