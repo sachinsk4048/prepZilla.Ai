@@ -1,0 +1,28 @@
+.logo-slider{
+width:100%;
+overflow:hidden;
+position:relative;
+}
+
+.logo-track{
+display:flex;
+align-items:center;
+width:max-content;
+animation:scroll 28s linear infinite;
+}
+
+.logo-track img{
+flex-shrink:0;
+}
+
+@keyframes scroll{
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+}
+
+

@@ -1,0 +1,78 @@
+.logo-gradient-animate {
+
+  font-family: "Sora", sans-serif;
+  letter-spacing: -0.5px;
+
+  background: linear-gradient(
+    90deg,
+    #2563eb,
+    #4f46e5,
+    #7c3aed,
+    #2563eb
+  );
+
+  background-size: 300% 300%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientMove 6s ease infinite;
+
+  position: relative;
+}
+
+/* animated gradient */
+@keyframes gradientMove {
+
+  0%{
+    background-position: 0% 50%;
+  }
+
+  50%{
+    background-position: 100% 50%;
+  }
+
+  100%{
+    background-position: 0% 50%;
+  }
+
+}
+
+
+/* shine effect */
+
+.logo-gradient-animate::after {
+
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.8),
+    transparent
+  );
+
+  animation: shine 4s infinite;
+}
+
+
+@keyframes shine {
+
+  0%{
+    left: -120%;
+  }
+
+  60%{
+    left: 120%;
+  }
+
+  100%{
+    left: 120%;
+  }
+
+}
