@@ -212,3 +212,5 @@ Authorization: Bearer your_jwt_token_here
 
 ✨ Once both the backend and frontend are running, open your browser and navigate to:
 http://localhost:5173 — Your full-stack InterviewPrepAi app will be up and running!
+
+
