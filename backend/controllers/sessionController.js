@@ -2,9 +2,6 @@ const Session = require('../models/Session');
 const Question = require('../models/Question');
 
 
-// @desc Create a new session
-// @route POST /api/session/create
-// @access Private
 
 
 exports.createSession = async (req, res) => {
@@ -41,9 +38,7 @@ exports.createSession = async (req, res) => {
     }
 }
 
-// @desc Get all sessions of the logged-in user
-// @route GET /api/session/my-sessions  
-// @access Private
+
 
 
 exports.getMySessions = async (req, res) => {
@@ -61,9 +56,7 @@ exports.getMySessions = async (req, res) => {
     }
 }
 
-// @desc Get a session by ID
-// @route GET /api/session/:id
-// @access Private
+
 
 exports.getSessionById = async (req, res) => {
     try{
@@ -86,9 +79,7 @@ exports.getSessionById = async (req, res) => {
     }
 }
 
-// @desc Delete a session by ID
-// @route DELETE /api/session/:id
-// @access Private
+
 
 exports.deleteSession = async (req, res) => {
     try{

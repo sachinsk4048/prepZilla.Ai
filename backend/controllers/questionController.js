@@ -3,9 +3,7 @@ const Session = require('../models/Session');
 
 
 
-// @desc Add additional questions to a session
-// @route POST /api/sessions/add
-// @access Private
+
 
 exports.addQuestionToSession = async (req, res) => {
     try{
@@ -38,9 +36,7 @@ exports.addQuestionToSession = async (req, res) => {
 }
 
 
-// @desc Toggle pin status of a question
-// @route PUT /api/questions/:id/pin
-// @access Private
+
 
 
 exports.togglePinQuestion = async (req, res) => {
@@ -59,9 +55,7 @@ exports.togglePinQuestion = async (req, res) => {
 }
 
 
-// @desc Update notes for a question
-// @route PUT /api/questions/:id/notes
-// @access Private
+
 
 
 exports.updateQuestionNotes = async (req, res) => {

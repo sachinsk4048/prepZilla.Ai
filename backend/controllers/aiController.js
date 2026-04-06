@@ -1,4 +1,4 @@
-// InterviewPrepAi\backend\controllers\aiController.js
+
 const { GoogleGenAI } = require("@google/genai");
 const {
   conceptExplainPrompt,
@@ -9,11 +9,6 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
 });
 
-// ===============================================
-// @desc Generate interview questions and answers
-// @route POST /api/ai/generate-questions
-// @access Private
-// ===============================================
 
 const generateInterviewQuestions = async (req, res) => {
   try {
@@ -49,7 +44,7 @@ const generateInterviewQuestions = async (req, res) => {
       throw new Error("Empty response from Gemini");
     }
 
-    // Remove markdown safely
+    
     const cleanedText = rawText
       .replace(/^```json\s*/i, "")
       .replace(/```$/, "")
@@ -69,11 +64,7 @@ const generateInterviewQuestions = async (req, res) => {
   }
 };
 
-// ===============================================
-// @desc Generate explanation for interview question
-// @route POST /api/ai/generate-explanation
-// @access Private
-// ===============================================
+
 
 const generateConceptExplanation = async (req, res) => {
   try {

@@ -1,12 +1,10 @@
-// backend\controllers\authController.js
+
 
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// @desc Get a session by ID
-// @route GET /api/session/:id
-// @access Private
+
 
 
 const generateToken = (id) => {
@@ -15,9 +13,7 @@ const generateToken = (id) => {
   });
 }
 
-// @desc Register a new user
-// @route POST /api/auth/register  
-// @access Public
+
 
 const registerUser = async (req, res) => {
     try{
@@ -49,9 +45,7 @@ const registerUser = async (req, res) => {
     }
 }
 
-// @desc Login a user
-// @route POST /api/auth/login
-// @access Public
+
 
 const loginUser = async (req, res) => {
   try{
@@ -72,9 +66,7 @@ const loginUser = async (req, res) => {
     }
 }
 
-// @desc Get user profile
-// @route GET /api/auth/profile 
-// @access Private
+
 
 const getUserProfile = async (req, res) => {
   try{
