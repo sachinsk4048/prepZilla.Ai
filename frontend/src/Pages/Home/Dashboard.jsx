@@ -27,23 +27,33 @@ function Dashboard() {
     data: null,
   });
 
+  // ✅ Fetch Sessions (Improved)
   const fetchAllSessions = async () => {
     try {
-      const response = await axiosInstance.get(API_PATHS.SESSION.GET_ALL);
+      setLoading(true);
+
+      const response = await axiosInstance.get(
+        API_PATHS.SESSION.GET_ALL
+      );
 
       setSession(response.data.sessions || []);
-      setLoading(false);
     } catch (err) {
       console.error("Error fetching session data:", err);
+      toast.error("Failed to load sessions");
+    } finally {
       setLoading(false);
     }
   };
 
+  // ✅ Optimized Delete (Instant UI Update)
   const deleteSession = async (sessionData) => {
+    const id = sessionData?._id;
+
     try {
-      await axiosInstance.delete(
-        API_PATHS.SESSION.DELETE(sessionData?._id)
-      );
+      // Optimistic UI update
+      setSession((prev) => prev.filter((item) => item._id !== id));
+
+      await axiosInstance.delete(API_PATHS.SESSION.DELETE(id));
 
       toast.success("Session Deleted Successfully");
 
@@ -51,10 +61,12 @@ function Dashboard() {
         open: false,
         data: null,
       });
-
-      fetchAllSessions();
     } catch (e) {
       console.error("Error deleting session data:", e);
+      toast.error("Failed to delete session");
+
+      // rollback if error
+      fetchAllSessions();
     }
   };
 
@@ -77,12 +89,47 @@ function Dashboard() {
               <SummaryCardSkeleton />
               <SummaryCardSkeleton />
               <SummaryCardSkeleton />
-
             </>
+          ) : session.length === 0 ? (
+           <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
+
+  {/* Glow Circle */}
+  <div className="relative mb-6">
+    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 blur-2xl opacity-30 animate-pulse"></div>
+
+    <div className="relative flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg">
+      <LuPlus className="text-white text-3xl" />
+    </div>
+  </div>
+
+  {/* Heading */}
+  <h2 className="text-3xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent tracking-tight mb-2">
+    No Sessions Yet
+  </h2>
+
+  {/* Subtext */}
+  <p className="text-gray-500 max-w-md mb-6 text-sm leading-relaxed">
+    You haven’t created any interview sessions yet.
+    <br />
+    <span className="text-gray-700 font-medium">
+      Start now and take your preparation to the next level 🚀
+    </span>
+  </p>
+
+  {/* CTA Button */}
+  <button
+    onClick={() => setOpenCreateModal(true)}
+    className="flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
+  >
+    <LuPlus className="text-lg" />
+    Create Your First Session
+  </button>
+
+</div>
           ) : (
-            session?.map((data, index) => (
+            session.map((data, index) => (
               <SummaryCard
-                key={data?._id}
+                key={data?._id || index}
                 colors={CARD_BG[index % CARD_BG.length]}
                 role={data?.role || ""}
                 topicToFocus={data?.topicsToFocus || ""}
@@ -94,9 +141,11 @@ function Dashboard() {
                     ? moment(data.updatedAt).format("DD MMM YYYY")
                     : ""
                 }
-                onSelect={() =>
-                  navigate(`/interview-prep/${data?._id}`)
-                }
+                onSelect={() => {
+                  if (data?._id) {
+                    navigate(`/interview-prep/${data._id}`);
+                  }
+                }}
                 onDelete={() =>
                   setOpenDeleteAlert({ open: true, data })
                 }
@@ -106,24 +155,26 @@ function Dashboard() {
         </div>
 
         {/* ADD BUTTON */}
-       <div className="fixed bottom-10 md:bottom-20 right-10 md:right-20">
+        {/* ADD BUTTON (only when sessions exist) */}
+{!loading && session.length > 0 && (
+  <div className="fixed bottom-10 md:bottom-20 right-10 md:right-20">
 
-  {/* rotating glow */}
-  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 blur-md spin-slow"></div>
+    {/* rotating glow */}
+    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 blur-md spin-slow"></div>
 
-  <button
-    onClick={() => setOpenCreateModal(true)}
-    className="relative flex items-center gap-3 px-6 py-3 rounded-full text-white font-semibold text-sm bg-gradient-to-r from-blue-600 to-purple-600 shadow-xl hover:scale-105 transition-all duration-300"
-  >
-    <span className="flex items-center justify-center w-9 h-9 rounded-full bg-white/20">
-      <LuPlus className="text-xl" />
-    </span>
+    <button
+      onClick={() => setOpenCreateModal(true)}
+      className="relative flex items-center gap-3 px-6 py-3 rounded-full text-white font-semibold text-sm bg-gradient-to-r from-blue-600 to-purple-600 shadow-xl hover:scale-105 transition-all duration-300"
+    >
+      <span className="flex items-center justify-center w-9 h-9 rounded-full bg-white/20">
+        <LuPlus className="text-xl" />
+      </span>
 
-    <span>Add New</span>
-  </button>
+      <span>Add New</span>
+    </button>
 
-</div>
-
+  </div>
+)}
       </div>
 
       {/* CREATE SESSION MODAL */}
@@ -140,13 +191,17 @@ function Dashboard() {
       {/* DELETE MODAL */}
       <Modal
         isOpen={openDeleteAlert?.open}
-        onClose={() => setOpenDeleteAlert({ open: false, data: null })}
+        onClose={() =>
+          setOpenDeleteAlert({ open: false, data: null })
+        }
         title="Delete Alert"
       >
         <DeleteAlertContent
           content="Are you sure you want to delete this session?"
           onDelete={() => deleteSession(openDeleteAlert.data)}
-          onClose={() => setOpenDeleteAlert({ open: false, data: null })}
+          onClose={() =>
+            setOpenDeleteAlert({ open: false, data: null })
+          }
         />
       </Modal>
     </DashboardLayout>
